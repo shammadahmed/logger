@@ -1,6 +1,11 @@
 const chalk = require('chalk');
 const _ = require('lodash');
+const logs = require('./data/logs');
 
-console.log(chalk.blue('Hello world!'));
-
-_.each([1, 2, 3], number => console.log(number));
+_.each(logs, log => {
+    switch (log.level) {
+	case 'error': console.log(chalk.red(log.message));
+	case 'warning': console.log(chalk.yellow(log.message));
+	case 'info': console.log(chalk.blue(log.message));
+    }
+});
